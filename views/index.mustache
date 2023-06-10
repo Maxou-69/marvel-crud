@@ -1,52 +1,58 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>Marvel CRUD</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-        <style>
-            .liste-personnages {
-                grid-template-columns: repeat(auto-fit, minmax(min(100% / 2, max(64px, 100%/4)), 1fr));
 
-            }
-            article header {
-                height: 300px;
-            }
-            article header h2 {
-                margin-top:20px;
-            }
-            article header img {
-                width: 200px;
-                object-fit: cover;
-                border-radius: 50%;
-                float: right;
-            }
-        </style>
-    </head>
-    <body>
-        <main class="container">
-            <h1>Liste des personnages</h1>
-            <a role="button" href="/create">➕ Ajouter un personnage</a>
-            <div class="grid liste-personnages">
-                {{#personnages}}
-                    <article>
-                        <header>
-                            <img src="{{ photo }}" alt="{{ nom }}">
-                            <h2>{{ nom }}</h2>
-                            <p>Equipe: <b>{{ nom_equipe }}</b></p>
-                        </header>
-                        <p>{{ description }}</p>
-                        <footer>
-                            <div class="grid">
-                                <a role="button" class="outline secondary" href="/delete/{{ id }}" onclick="return confirm('Êtes-vous sûr ?')">🗑️ Supprimer</a>
-                                <a role="button" class="outline secondary" href="/edit/{{ id }}">✏️ Modifier</a>
-                            </div>
-                        </footer>
+<head>
+    <meta charset="UTF-8">
+    <title>Marvel CRUD</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        .liste-personnages {
+            grid-template-columns: repeat(auto-fit, minmax(min(100% / 2, max(64px, 100%/4)), 1fr));
 
-                    </article>
-                {{/personnages}}
-            </div>
-        </main>
-    </body>
+        }
+
+        article header {
+            height: 300px;
+        }
+
+        article header h2 {
+            margin-top: 20px;
+        }
+
+        article header img {
+            width: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h1>Liste des personnages</h1>
+        <a role="button" href="./create.mustache">➕ Ajouter un personnage</a>
+        <div class="grid liste-personnages">
+            {{#personnages}}
+            <article>
+                <header>
+                    <img src="{{ photo }}" alt="{{ nom }}">
+                    <h2>{{ nom }}</h2>
+                    <p>Equipe: <b>{{ nom_equipe }}</b></p>
+                </header>
+                <p>{{ description }}</p>
+                <footer>
+                    <div class="grid">
+                        <a role="button" class="outline secondary" href="/delete/{{ id }}"
+                            onclick="return confirm('Êtes-vous sûr ?')">🗑️ Supprimer</a>
+                        <a role="button" class="outline secondary" href="/edit/{{ id }}">✏️ Modifier</a>
+                    </div>
+                </footer>
+
+            </article>
+            {{/personnages}}
+        </div>
+    </main>
+</body>
+
 </html>
-
