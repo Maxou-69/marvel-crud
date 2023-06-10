@@ -42,6 +42,19 @@ app.get("/", (req, res) => {
     });
 });
 /**
+ * Route pour afficher le formulaire de création
+ */
+app.get("/create", (req, res) => {
+    const query = /*sql*/ `
+        SELECT * FROM equipes
+    `;
+
+    db.query(query, (err, result) => {
+        if (err) throw err;
+        res.render("create", { equipes: result });
+    });
+});
+/**
  * Route pour traiter le formulaire de création
  */
 app.post("/create", (req, res) => {
