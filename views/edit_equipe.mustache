@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+    <title>Marvel CRUD</title>
+</head>
+
+<body>
+    {{#equipes}}
+    <option value="{{ id }}">{{ nom }}</option>
+    {{/equipes}}
+    <a role="button" href="/">Annuler la modification des équipes</a>
+</body>
+
+</html>
