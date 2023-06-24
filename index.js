@@ -116,6 +116,30 @@ app.post("/create", (req, res) => {
         res.redirect("/");
     });
 });
+// gestion du formulaire de création d'équipe
+app.get("/create_equipe", (req, res) => {
+    const query = /*sql*/ `
+        SELECT * FROM equipes
+    `;
+
+    db.query(query, (err, result) => {
+        if (err) throw err;
+        res.render("create_equipe", { equipes: result });
+    });
+});
+
+app.post("/create_equipe", (req, res) => {
+    const { nom } = req.body
+    const query = `INSERT INTO equipes (nom)
+    VALUES(?)`;
+    db.query(query, [nom], (err) => {
+        if (err) throw err;
+        res.redirect("/");
+    });
+
+})
+
+
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
