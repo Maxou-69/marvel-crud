@@ -41,7 +41,7 @@ app.get("/", (req, res) => {
         res.render("index", { personnages: result });
     });
 });
-
+// Route pour la suppression
 app.get("/delete/:id", (req, res) => {
     const id = req.params.id;
     const query = /*sql*/`
@@ -54,6 +54,39 @@ app.get("/delete/:id", (req, res) => {
 
 
 })
+// Route pour la modification
+app.get("/edit/:id", (req, res) => {
+    const id = req.params.id;
+    const query = `
+    SELECT * FROM personnages WHERE id=?
+    `;
+    const queryEquipe = `SELECT * FROM equipes`;
+    db.query(query, [id], (err, result) => {
+        if (err) throw err;
+        db.query(queryEquipe, [id], (err, resultEquipe) => {
+            if (err) throw err;
+            res.render("edit", { personnage: result[0], equipes: resultEquipe });
+        })
+
+    });
+})
+
+app.post("/edit/:id", (req, res) => {
+    const id = req.params.id;
+    const { nom, photo, description, equipe_id } = req.body;
+
+    const query = /*sql*/ `
+     UPDATE personnages 
+     SET nom=?, photo=?, description=?, equipe_id=?
+     WHERE id=?
+     `;
+
+    db.query(query, [nom, photo, description, equipe_id, id], (err, result) => {
+        if (err) throw err;
+        res.redirect("/");
+    });
+});
+
 /**
  * Route pour afficher le formulaire de création
  */

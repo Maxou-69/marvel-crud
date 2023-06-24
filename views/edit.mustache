@@ -13,15 +13,15 @@
     <form method="post">
         <div>
             <label for="nom">Nom&nbsp;:</label>
-            <input type="text" id="nom" name="nom" />
+            <input type="text" id="nom" name="nom" value="{{personnage.nom}}" />
             <div>
                 <div>
                     <label for="description">description&nbsp;:</label>
-                    <textarea id="description" name="description"></textarea>
+                    <textarea id="description" name="description">{{ personnage.description }}</textarea>
                 </div>
                 <div>
                     <label for="photo">image&nbsp;:</label>
-                    <input type="text" id="photo" name="photo" />
+                    <input type="text" id="photo" name="photo" value="{{personnage.photo}}" />
                 </div>
                 <br>
                 <label for="equipe_id">Équipe :</label>
@@ -32,7 +32,7 @@
                     <option value="+">Créer une nouvelle Équipe</option>
                 </select>
                 <br>
-                <button id="create_equipe" type="submit">submit</button>
+                <button id="create_equipe" type="submit">Sauvegarder les modifications</button>
     </form>
 
 </body>
