@@ -17,16 +17,21 @@
             <div>
                 <div>
                     <label for="description">description&nbsp;:</label>
-                    <input type="text" id="description" name="description" />
+                    <textarea id="description" name="description"></textarea>
                 </div>
                 <div>
                     <label for="photo">image&nbsp;:</label>
                     <input type="text" id="photo" name="photo" />
                 </div>
-                <div>
-                    <label for="equipe_id">description</label>
-                    <textarea id="equipe_id" name="equipe_id"></textarea>
-                </div>
+                <br>
+                <label for="equipe_id">Équipe :</label>
+                <select name="equipe_id" id="equipe_id">
+                    {{#equipes}}
+                    <option value="{{ id }}">{{ nom }}</option>
+                    {{/equipes}}
+                    <option value="+">Créer une nouvelle Équipe</option>
+                </select>
+                <br>
                 <button type="submit">submit</button>
     </form>
 

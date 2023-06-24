@@ -41,6 +41,19 @@ app.get("/", (req, res) => {
         res.render("index", { personnages: result });
     });
 });
+
+app.get("/delete/:id", (req, res) => {
+    const id = req.params.id;
+    const query = /*sql*/`
+    DELETE FROM personnages WHERE id=?
+        `;
+    db.query(query, [id], (err, result) => {
+        if (err) throw err;
+        res.redirect("/");
+    });
+
+
+})
 /**
  * Route pour afficher le formulaire de création
  */
