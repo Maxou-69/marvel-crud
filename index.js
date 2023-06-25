@@ -104,7 +104,18 @@ app.get("/edit_equipe", (req, res) => {
     })
 })
 
-// Route pour la suppression
+app.post("/edit_equipe/:id", (req, res) => {
+    const id = req.params.id;
+    const { nom } = req.nouveauNom
+    const query = `UPDATE equipes
+    SET nom=? WHERE id=?`
+    db.query(query, [id], (err, result) => {
+        if (err) throw err;
+        res.redirect("/");
+    });
+})
+
+// Route pour la suppression d'un personnage
 app.get("/delete/:id", (req, res) => {
     const id = req.params.id;
     const query = /*sql*/`
@@ -117,7 +128,7 @@ app.get("/delete/:id", (req, res) => {
 
 
 })
-// Route pour la modification
+// Route pour la modification des personnages
 app.get("/edit/:id", (req, res) => {
     const id = req.params.id;
     const query = `

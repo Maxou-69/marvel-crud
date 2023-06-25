@@ -6,13 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
     <title>Marvel CRUD</title>
+    <style>
+        .liste-personnages {
+            grid-template-columns: repeat(auto-fit, minmax(min(100% / 2, max(64px, 100%/4)), 1fr));
+
+        }
+
+        article header {
+            height: 300px;
+        }
+
+        article header h2 {
+            margin-top: 20px;
+        }
+
+        article header img {
+            width: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            float: right;
+        }
+    </style>
 </head>
 
 <body>
-    {{#equipes}}
-    <option value="{{ id }}">{{ nom }}</option>
-    {{/equipes}}
-    <a role="button" href="/">Annuler la modification des équipes</a>
+    <main class="container">
+        {{#equipes}}
+        <option value="{{ id }}">{{ nom }}</option>
+        <div class="grid">
+            <a role="button" class="outline secondary" href="/delete_equipe/{{ id }}"
+                onclick="return confirm('Êtes-vous sûr ?')">🗑️ Supprimer</a>
+            <a role="button" class="outline secondary" href="/edit_equipe/{{ id }}" onclick="openDialog('{{ nom }}')">✏️
+                Modifier</a>
+        </div>
+        {{/equipes}}
+        <a role="button" href="/">Annuler la modification des équipes</a>
+    </main>
 </body>
+<script>
+    function openDialog(nomEquipe) {
+        const nouveauNom = prompt("Nouveau nom d'équipe :", nomEquipe);
+
+        if (nouveauNom !== null && nouveauNom.trim() !== '') {
+            // Faites quelque chose avec le nouveau nom, par exemple, envoyez-le au serveur via une requête AJAX.
+            console.log("Nouveau nom d'équipe :", nouveauNom);
+        }
+    }
+</script>
 
 </html>
