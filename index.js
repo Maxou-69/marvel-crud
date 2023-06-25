@@ -114,7 +114,16 @@ app.post("/edit_equipe/:id", (req, res) => {
         res.redirect("/");
     });
 })
-
+// Route pour la suppression d'une équipe /!\
+app.get("/delete_equipe/:id", (req, res) => {
+    const id = req.params.id;
+    const query = `
+    DELETE FROM equipes WHERE id=?`;
+    db.query(query, [id], (err, result) => {
+        if (err) throw err;
+        res.redirect("/");
+    })
+})
 // Route pour la suppression d'un personnage
 app.get("/delete/:id", (req, res) => {
     const id = req.params.id;
