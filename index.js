@@ -114,6 +114,7 @@ app.post("/edit_equipe/:id", (req, res) => {
         res.redirect("/");
     });
 })
+
 // Route pour la suppression d'une équipe /!\
 app.get("/delete_equipe/:id", (req, res) => {
     const id = req.params.id;
